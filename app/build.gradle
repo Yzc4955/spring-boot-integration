@@ -1,0 +1,29 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.13'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+}
+
+sourceCompatibility = '1.8'
+
+dependencies {
+    // 依赖interface下所有的module
+    project(":interface").subprojects {
+        api project(":interface:${name}")
+    }
+    project(":service").subprojects {
+        api project(":service:${name}")
+    }
+    project(":constant").subprojects {
+        api project(":constant:${name}")
+    }
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+    enabled = true
+    // 应用程序的入口点
+    mainClass.set('com.yangzc.app.AppApplication')
+}

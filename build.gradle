@@ -1,0 +1,19 @@
+allprojects {
+    version = '0.0.1-SNAPSHOT'
+    group = 'com.yangzc'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java-library'
+
+    dependencies {
+        implementation 'com.google.guava:guava:28.1-jre'
+
+        testImplementation 'junit:junit:4.12'
+    }
+}

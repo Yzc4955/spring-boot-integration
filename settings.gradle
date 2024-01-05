@@ -1,0 +1,15 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'spring-boot-integration'
+include 'app'
+include 'service'
+include 'service:app-service'
+include 'constant'
+include 'constant:app-constant'
+include 'interface'
+include 'interface:app-interface'
+include 'plugin'
