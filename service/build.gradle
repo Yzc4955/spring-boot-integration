@@ -1,3 +1,14 @@
+// 引入本地gradle plugin jar
+buildscript {
+    repositories {
+        flatDir dirs: '../lib'
+    }
+    dependencies {
+        classpath 'com.yangzc.gradle.plugin:codeGen-gradle-plugin:1.0.0'
+    }
+}
+
+// 远程或本地仓库
 plugins {
     // codeGen gradle plugin
     id 'com.codegen.gradle.plugin' version '1.0.0'

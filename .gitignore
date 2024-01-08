@@ -12,6 +12,7 @@
 
 # Package Files #
 *.jar
+!codeGen-gradle-plugin-*.jar
 *.war
 *.nar
 *.ear

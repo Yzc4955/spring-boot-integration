@@ -9,15 +9,19 @@ import org.gradle.testkit.runner.GradleRunner
 /**
  * A simple functional test for the 'com.yangzc.gradle.plugin.greeting' plugin.
  */
-class CodeGenGradlePluginPluginFunctionalTest extends Specification {
+class MybatisGenPluginFunctionalTest extends Specification {
     def "can run task"() {
         given:
         def projectDir = new File("build/functionalTest")
         projectDir.mkdirs()
+
+        new File(projectDir, "settings.gradle").delete()
+        new File(projectDir, "build.gradle").delete()
+
         new File(projectDir, "settings.gradle") << ""
         new File(projectDir, "build.gradle") << """
             plugins {
-                id('com.yangzc.gradle.plugin.greeting')
+                id('com.codegen.gradle.plugin')
             }
         """
 
@@ -25,11 +29,11 @@ class CodeGenGradlePluginPluginFunctionalTest extends Specification {
         def runner = GradleRunner.create()
         runner.forwardOutput()
         runner.withPluginClasspath()
-        runner.withArguments("greeting")
+        runner.withArguments("mybatisGenHelp")
         runner.withProjectDir(projectDir)
         def result = runner.build()
 
         then:
-        result.output.contains("Hello from plugin 'com.yangzc.gradle.plugin.greeting'")
+        result.output.contains("This is mybatis generate plugin, list tasks")
     }
 }

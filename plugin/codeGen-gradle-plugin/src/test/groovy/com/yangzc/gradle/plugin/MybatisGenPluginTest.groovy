@@ -10,15 +10,15 @@ import spock.lang.Specification
 /**
  * A simple unit test for the 'com.yangzc.gradle.plugin.greeting' plugin.
  */
-class CodeGenGradlePluginPluginTest extends Specification {
+class MybatisGenPluginTest extends Specification {
     def "plugin registers task"() {
         given:
         def project = ProjectBuilder.builder().build()
 
         when:
-        project.plugins.apply("com.yangzc.gradle.plugin.greeting")
+        project.plugins.apply("com.codegen.gradle.plugin")
 
         then:
-        project.tasks.findByName("greeting") != null
+        project.tasks.findByName("mybatisGenHelp") != null
     }
 }
