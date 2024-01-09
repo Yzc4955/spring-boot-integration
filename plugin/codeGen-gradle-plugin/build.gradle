@@ -25,7 +25,8 @@ dependencies {
 gradlePlugin {
     // Define the plugin
     plugins {
-        greeting {
+        // 自定义标识符，无实际意义
+        customIdentifier {
             id = 'com.codegen.gradle.plugin'
             implementationClass = 'com.yangzc.gradle.plugin.PluginManager'
         }

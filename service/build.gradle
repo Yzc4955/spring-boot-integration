@@ -9,10 +9,10 @@ buildscript {
 }
 
 // 远程或本地仓库
-plugins {
-    // codeGen gradle plugin
-    id 'com.codegen.gradle.plugin' version '1.0.0'
-}
+//plugins {
+//    // codeGen gradle plugin
+//    id 'com.codegen.gradle.plugin' version '1.0.0'
+//}
 
 subprojects {
     apply plugin: 'com.codegen.gradle.plugin'
