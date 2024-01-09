@@ -1,9 +1,8 @@
 pluginManagement {
     repositories {
+        // 从本地仓库获取plugin
         mavenLocal()
-        maven {
-            url uri('../lib')
-        }
+        // 从gradle plugin门户获取plugin
         gradlePluginPortal()
     }
 }
