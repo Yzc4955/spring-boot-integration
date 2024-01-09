@@ -14,6 +14,7 @@
     -->
     <properties resource="" url=""/>
 
+    <!-- 数据库驱动-->
     <!-- MBG工作的时候需要额外加载的依赖包，location属性指明加载数据库驱动的jar/zip包的全路径 -->
     <classPathEntry location=""/>
 
@@ -60,10 +61,11 @@
         <!-- 注释生成器配置 -->
         <commentGenerator>
             <property name="suppressDate" value=""/>
-            <property name="suppressAllComments" value=""/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
-        <!-- 必须要有的，使用这个配置链接数据库 -->
+        <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection
                 driverClass=""
                 connectionURL=""
@@ -89,7 +91,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!-- Java实体类生成器配置 -->
+        <!-- 生成模型的包名和位置-->
         <!--
             java模型创建器，是必须要的元素
             负责：1，key类（见context的defaultModelType）；2，java类；3，查询类
@@ -126,6 +128,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
+        <!-- 生成映射文件的包名和位置-->
         <!--
             生成SQL map的XML文件生成器，
             注意，在Mybatis3之后，我们可以使用mapper.xml文件+Mapper接口（或者不用mapper接口），
@@ -138,6 +141,7 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
+        <!-- 生成DAO的包名和位置-->
         <!--
             对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口
             targetPackage/targetProject:同javaModelGenerator
@@ -155,6 +159,7 @@
             <property name="rootInterface" value=""/>
         </javaClientGenerator>
 
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!--
             选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素
             选择的table会生成一下文件：
