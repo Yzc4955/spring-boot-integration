@@ -8,17 +8,16 @@
     <context id="mysql" targetRuntime="MyBatis3">
 
         <property name="javaFileEncoding" value="UTF-8"/>
-        <property name="beginningDelimiter" value="`"/>
-        <property name="endingDelimiter" value="`"/>
+        <property name="beginningDelimiter" value=""/>
+        <property name="endingDelimiter" value=""/>
 
-<!--        <plugin type="org.mybatis.generator.lemon.LemonPlugin">-->
-<!--            <property name="mappers" value="com.cmpay.lemon.framework.dao.BaseDao"/>-->
-<!--            <property name="ignoreModelFields" value="tmSmp"/>-->
-<!--        </plugin>-->
+        <!--        <plugin type="org.mybatis.generator.plugin">-->
+        <!--            <property name="mappers" value="com.dao.BaseDao"/>-->
+        <!--            <property name="ignoreModelFields" value="tmSmp"/>-->
+        <!--        </plugin>-->
 
         <commentGenerator>
-            <property name="suppressDate" value="true"/>
-            <property name="suppressAllComments" value="false"/>
+            <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
         <jdbcConnection
