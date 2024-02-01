@@ -58,11 +58,51 @@
             <property name="ignoreModelFields" value=""/>
         </plugin>
 
-        <!-- 注释生成器配置 -->
+        <!--
+            注释生成器配置
+            注释生成器用于为 MyBatis 生成器 （MBG） 生成的各种元素（Java 字段、Java 方法、XML 元素等）生成注释
+         -->
         <commentGenerator>
-            <property name="suppressDate" value=""/>
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true"/>
+            <!--
+                是否在生成的代码中包含任何注释
+                true: 不会向任何生成的元素添加任何注释
+                false(默认): 所有生成的元素都将包含指示该元素是生成的元素的注释
+            -->
+            <property name="suppressAllComments" value="ture"/>
+
+            <!--
+                在生成的注释中包含生成时间戳
+                true: 不生成时间戳
+                false(默认): 生成时间戳
+
+                suppressDate为ture时，忽略此项
+            -->
+            <property name="suppressDate" value="false"/>
+            <!--
+                将日期写入生成的注释时使用的日期格式字符串
+                默认格式 java.text.SimpleDateFormat，24-1-15 下午2:21
+
+                suppressAllComments为ture时，忽略此项
+                suppressDate为ture时，忽略此项
+            -->
+            <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+
+            <!--
+                是否在数据库表和列的注释中添加数据库备注信息
+                ture: 数据库表和列的注释将添加到生成的注释中
+                false(默认): 所有生成的注释将不包括数据库表和列的注释
+
+                suppressAllComments为ture时，忽略此项
+            -->
+            <property name="addRemarkComments" value="false"/>
+
+            <!--
+                是否使用来自已弃用的 "javax" 命名空间的注解。在 JDK 9 及更高版本中，推荐使用 "jakarta" 命名空间。
+                true: 生成的 Java 元素将使用 "javax.annotation.Generated" 进行注解。
+                false(默认): 生成的 Java 元素将使用 "jakarta.annotation.Generated" 进行注解
+            -->
+            <property name="useLegacyGeneratedAnnotation" value="false"/>
+
         </commentGenerator>
 
         <!--数据库链接URL，用户名、密码 -->
@@ -91,7 +131,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!-- 生成模型的包名和位置-->
+        <!-- Java实体类生成器配置 -->
         <!--
             java模型创建器，是必须要的元素
             负责：1，key类（见context的defaultModelType）；2，java类；3，查询类

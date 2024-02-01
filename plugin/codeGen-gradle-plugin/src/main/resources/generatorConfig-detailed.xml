@@ -59,8 +59,7 @@
 
         <!-- 注释生成器配置 -->
         <commentGenerator>
-            <property name="suppressDate" value=""/>
-            <property name="suppressAllComments" value=""/>
+            <property name="suppressAllComments" value="ture"/>
         </commentGenerator>
 
         <!-- 必须要有的，使用这个配置链接数据库 -->

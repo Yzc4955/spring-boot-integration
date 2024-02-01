@@ -120,19 +120,19 @@ class MybatisGenPlugin implements Plugin<Project> {
     }
 
     private void getConfigFile(String configName){
-        def mainSourceSet = project.sourceSets.main
-        def resourcesDir = mainSourceSet.resources.srcDirs.first()
-        def defaultConfigFile = project.file("$resourcesDir/$configName")
-        def defaultConfigContent = defaultConfigFile.text
+        // 从插件内获取配置文件
+        def pluginConfigFile = getClass().getResourceAsStream("/$configName")
+        def pluginConfigContent = pluginConfigFile.text
 
         // 构建文件路径，将文件生成到当前模块的根目录
         File configFile = project.file(DEFAULT_CONFIG_NAME)
 
         // 将默认配置写入文件
-        Files.write(configFile.toPath(), defaultConfigContent.getBytes())
+        Files.write(configFile.toPath(), pluginConfigContent.getBytes())
 
         println "*********************************************";
         println "** generator config file $DEFAULT_CONFIG_NAME is created"
         println "*********************************************";
+
     }
 }
