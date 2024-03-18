@@ -8,13 +8,23 @@ import org.gradle.invocation.DefaultGradle
 
 import java.nio.file.Files
 
-import static com.yangzc.gradle.constant.Constants.*
+import static com.yangzc.gradle.constant.Constants.DEFAULT_CONFIG_NAME
+import static com.yangzc.gradle.constant.Constants.MYBATIS_GEN_GROUP
 
 class MybatisGenPlugin implements Plugin<Project> {
 
-    private static final String  MYBATIS_GEN = 'mybatisGen';
-    private static final String  GEN_SIMPLE_CONFIG = 'genSimpleConfig';
-    private static final String  GEN_DETAILED_CONFIG = 'genDetailedConfig';
+    private static final String MYBATIS_GEN = 'mybatisGen';
+    private static final String GEN_SIMPLE_CONFIG = 'genSimpleConfig';
+    private static final String GEN_DETAILED_CONFIG = 'genDetailedConfig';
+
+    /**
+     * todo 当前问题
+     * 1. DAO的文件名错误
+     * 2. 重复生成时 Mapper文件不是覆盖
+     * 3. DAO文件没有@Mapper注解
+     * 4. DO的属性注释错误
+     * 5. 应该新建一个DAO的接口，定义增删改，根据id查询，find方法。所有的DAO继承这个BaseDAO接口 简化DAO文件内容
+     */
 
     /**
      * 项目对象
@@ -73,7 +83,7 @@ class MybatisGenPlugin implements Plugin<Project> {
     /**
      * 创建 SimpleConfigGen 任务
      */
-    void createSimpleConfigGenTask(){
+    void createSimpleConfigGenTask() {
         // 创建任务对象，并在任务执行时打印帮助信息
         Task task = this.project.task(GEN_SIMPLE_CONFIG).doLast {
             getConfigFile("generatorConfig-simple.xml")
@@ -86,7 +96,7 @@ class MybatisGenPlugin implements Plugin<Project> {
     /**
      * 创建 DetailedConfigGen 任务
      */
-    void createDetailedConfigGenTask(){
+    void createDetailedConfigGenTask() {
         // 创建任务对象，并在任务执行时打印帮助信息
         Task task = this.project.task(GEN_DETAILED_CONFIG).doLast {
             getConfigFile("generatorConfig-detailed.xml")
@@ -119,7 +129,7 @@ class MybatisGenPlugin implements Plugin<Project> {
         mybatisTask.setGroup(MYBATIS_GEN_GROUP);
     }
 
-    private void getConfigFile(String configName){
+    private void getConfigFile(String configName) {
         // 从插件内获取配置文件
         def pluginConfigFile = getClass().getResourceAsStream("/$configName")
         def pluginConfigContent = pluginConfigFile.text
